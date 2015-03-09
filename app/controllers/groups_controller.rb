@@ -1,11 +1,16 @@
 class GroupsController < ApplicationController
 
+  def group_params
+    params.require(:group).permit(:title,:descroptioin)
+  end
+
   def index
     @groups = Group.all
   end
 
   def show
     @group = Group.find(params[:id])
+    @posts = @group.posts
   end
 
   def new
@@ -20,10 +25,6 @@ class GroupsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def group_params
-    params.require(:group).permit(:title,:descroptioin)
   end
 
   def edit
