@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  before_action :login_required, :only => [:new, :create, :edit,:update,:destroy]
+
   def group_params
     params.require(:group).permit(:title,:descroptioin)
   end
